@@ -254,5 +254,18 @@ Hook clean-indent() to 'return' key, and unindent to M-backspace"
   (global-set-key (kbd "RET") 'newline)
   (global-set-key (kbd "M-DEL") 'backward-kill-word))
 
-(provide 'clean-aindent)
+(defvar clean-aindent-mode-map
+  (let ((m (make-sparse-keymap)))
+    (define-key m (kbd "RET") 'clean-aindent)
+    (define-key m (kbd "M-DEL") 'clean-aindent_bsunindent)
+    m)
+  "Keymap for `fullscreen-mode'.")
+
+;;;###autoload
+(define-minor-mode clean-aindent-mode
+  "clean-aindent-mode description"
+  :global t
+  :keymap clean-aindent-mode-map)
+
+(provide 'clean-aindent-mode)
 (clean-aindent-init)
